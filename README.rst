@@ -3,6 +3,8 @@ hecho
 
 hecho is a fast and simple HTTP echo server.
 
+An example is running on "http://hecho.bigode.net/".
+
 It uses Falcon_ HTTP library and Bjoern_ WSGI server to serve thousands
 requests per second using just one CPU Core and approximately 15MB of RAM.
 

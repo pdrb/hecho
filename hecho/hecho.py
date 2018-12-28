@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-# hecho 0.1.0
+# hecho 0.1.3
 # author: Pedro Buteri Gonring
 # email: pedro@bigode.net
 # date: 20181228
@@ -18,7 +18,7 @@ import falcon
 import bjoern
 
 
-_version = '0.1.0'
+_version = '0.1.3'
 
 
 # Class used to daemonize the process

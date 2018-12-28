@@ -8,7 +8,7 @@ with open(path.join(here, 'README.rst'), encoding='utf-8') as f:
     long_description = f.read()
 
 
-version = '0.1.0'
+version = '0.1.3'
 
 
 setup(
@@ -23,6 +23,7 @@ setup(
     classifiers=[],
     keywords='fast http echo server',
     packages=find_packages(exclude=['contrib', 'docs', 'tests*']),
+    install_requires=['falcon', 'bjoern'],
     entry_points={
         'console_scripts': ['hecho=hecho.hecho:main'],
     },
