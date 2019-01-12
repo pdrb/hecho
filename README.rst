@@ -1,3 +1,5 @@
+|Downloads|
+
 hecho
 =====
 
@@ -41,8 +43,14 @@ It supports get, post, put, patch and delete methods.
 The request data must be JSON or x-www-form-urlencoded (standard simple post).
 
 
+Notes
+=====
+
+- Works on Python 2.7 and Python3.4+
+
+
 Install
--------
+=======
 
 Install using pip::
 
@@ -50,7 +58,7 @@ Install using pip::
 
 
 Usage
------
+=====
 
 ::
 
@@ -70,7 +78,7 @@ Usage
 
 
 Running
--------
+=======
 
 Starting the server::
 
@@ -114,11 +122,8 @@ Stopping the server::
     $ hecho stop
 
 
-Notes
------
-
-- Works on Python 2.7 and Python3.4+
-
-
 .. _Falcon: https://github.com/falconry/falcon
 .. _Bjoern: https://github.com/jonashaag/bjoern
+
+
+.. |Downloads| image:: https://pepy.tech/badge/hecho
