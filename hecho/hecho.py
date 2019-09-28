@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 
-# hecho 0.1.3
+# hecho 0.1.4
 # author: Pedro Buteri Gonring
 # email: pedro@bigode.net
-# date: 20181228
+# date: 20190928
 
 import optparse
 import os
@@ -12,13 +12,13 @@ import datetime
 import sys
 import json
 
-from daemon import Daemon
+from .daemon import Daemon
 
 import falcon
 import bjoern
 
 
-_version = '0.1.3'
+_version = '0.1.4'
 
 
 # Class used to daemonize the process
@@ -43,12 +43,11 @@ class LoggingMiddleware(object):
         except:
             length = 0
         user_agent = req.get_header('user-agent', default='')
-        logger.info(
-            '%s %s %s %s %s %s %s' % (
-                date, req.remote_addr, req.method, req.url, status,
-                length, user_agent
-            )
-        )
+        real_ip = req.get_header('x-real-ip', default='')
+        if real_ip == '':
+            real_ip = req.remote_addr
+        logger.info('%s %s %s %s %s %s %s' % (date, real_ip, req.method,
+                    req.url, status, length, user_agent))
 
 
 # Falcon resource
@@ -57,10 +56,18 @@ class RootResource(object):
         response = {}
         response['headers'] = req.headers
         response['params'] = req.params
-        response['origin'] = req.remote_addr
         response['url'] = req.url
         response['method'] = req.method
+        response['origin'] = self.get_real_ip(req, response)
         return response
+
+    def get_real_ip(self, req, response):
+        real_ip = req.get_header('x-real-ip', default='')
+        if real_ip == '':
+            real_ip = req.remote_addr
+        else:
+            del(response['headers']['X-REAL-IP'])
+        return real_ip
 
     def on_get(self, req, resp):
         response = self.create_response(req)
